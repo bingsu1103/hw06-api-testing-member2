@@ -18,7 +18,7 @@ Postman dùng collection theo Pool, biến cấp collection và môi trường, 
 
 ## CI và chứng cứ
 
-GitHub Actions có chế độ baseline gồm 3 case đại diện, chế độ minh họa một assertion thất bại và chế độ chạy đủ 120 case trên SUT thật. Baseline là tập con. Bộ đầy đủ hiện có lỗi chức năng. Ảnh console, URL và ảnh chạy GitHub Actions, GitHub Issues và các phần do sinh viên thực hiện được liệt kê trong evidence/README.md.
+GitHub Actions đã chạy cả ba chế độ. Baseline gồm 3 case đại diện và pass 6/6 assertion. Lượt minh họa có đúng 1 assertion fail. Lượt đủ 120 case ghi nhận 106 assertion fail trên SUT gốc. Sáu GitHub Issues có ảnh Newman. Xem đường dẫn và ảnh bằng chứng trong evidence/README.md.
 
 ## Nguồn
 

@@ -22,11 +22,13 @@ Runner dùng bản EShop seed mới tại `127.0.0.1:3000`. Chế độ `baselin
 
 | Tiêu chí | Tối đa | Tự chấm |
 | --- | ---: | --- |
-| API 1 | 30 | Chờ sinh viên |
-| API 2 | 30 | Chờ sinh viên |
-| API 3 | 30 | Chờ sinh viên |
-| Agent Skill | 10 | Chờ sinh viên |
-| Tổng | 100 | Chờ sinh viên |
+| API 1 | 30 | 20 |
+| API 2 | 30 | 20 |
+| API 3 | 30 | 20 |
+| Agent Skill | 10 | 0 |
+| Tổng | 100 | 60 tạm tính |
+
+Điểm tạm tính phản ánh phần kỹ thuật đã có test case, kết quả thực thi và issue cho cả ba API. Cập nhật điểm khi hoàn tất phần đánh giá AI và sơ đồ tự vẽ.
 
 Phần AI audit, AI report và prompt AI do sinh viên thực hiện. [Checklist bằng chứng](evidence/README.md) · [Commit log](reports/git-commit-log.txt)
 

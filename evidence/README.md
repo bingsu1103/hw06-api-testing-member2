@@ -1,15 +1,13 @@
-# Manual Evidence Checklist
+# Bằng chứng HW06 · Thành viên 2
 
-The following evidence must be captured by the student from a real run and must not be generated or fabricated:
+- [Repo GitHub public](https://github.com/bingsu1103/hw06-api-testing-member2)
+- [Báo cáo 6 issue kèm ảnh Newman](../reports/bugs/member2-functional-findings.md) · [Ảnh trang GitHub Issues](screenshots/github-issues.png)
+- [Lượt CI, commit tương ứng và ảnh](../reports/cicd-report.md)
+- `screenshots/newman-console-student.png` là ảnh Terminal gốc do sinh viên cung cấp. Ảnh có header `X-Student-Id: 23120205`, host `127.0.0.1:3000` và tổng kết Newman. File này đi cùng ZIP kỹ thuật local.
 
-- [ ] Console screenshot showing `X-Student-Id: 23120205` from the pre-request script.
-- [ ] Newman terminal screenshot showing hostname `localhost` or `127.0.0.1` and the final summary.
-- [ ] Screenshot attached to each confirmed GitHub Issue.
-- [ ] Public GitHub Issue URL added to each Markdown bug report.
-- [ ] All-pass GitHub Actions run screenshot and URL.
-- [ ] One-failure demonstration GitHub Actions run screenshot and URL.
-- [ ] Self-drawn API test-generator diagram.
-- [ ] Self-assessment score and final ZIP with the required appendix and URLs.
-- [x] Scope confirmed from assignment row 2: Registration, Checkout and Admin Order Status.
+## Còn trước khi nộp
 
-Do not mark an item complete until the corresponding real file or URL is present.
+- AI audit, AI report và prompt AI do sinh viên hoàn thiện.
+- Sơ đồ test-generator phải do sinh viên tự vẽ theo đề. [Pseudocode kỹ thuật](../docs/test-generator-pseudocode.md)
+- Xác nhận điểm tự chấm cuối, bổ sung các phần trên và lưu ZIP theo mẫu đề. Bản kỹ thuật hiện dùng điểm tự chấm tạm 60/100.
+- Yêu cầu một lượt CI xanh toàn bộ suite chưa đạt. Baseline xanh chạy ba case đại diện. Lượt đủ 120 case ghi nhận lỗi của SUT.

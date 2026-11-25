@@ -8,6 +8,10 @@ Workflow `.github/workflows/api-tests.yml` dùng Node 22, npm ci và npm test, s
 | demonstrate-failure | Cùng ba case, thay kỳ vọng HTTP của REG-G-001 để tạo đúng một assertion fail |
 | full | Toàn bộ 120 case, tải HTML đã ẩn body và Authorization |
 
-Hai chế độ đầu có thể chạy bằng `./scripts/run-newman.sh baseline` và `./scripts/run-newman.sh demonstrate-failure`. Bài yêu cầu CI xanh cho toàn bộ suite. Điều kiện đó chưa đạt trên SUT gốc. Repo hiện tại chưa có remote, nên chưa có run URL, ảnh Actions hay hai commit public tương ứng.
+| Lượt chạy GitHub Actions | Commit public | Kết quả | Bằng chứng |
+| --- | --- | --- | --- |
+| [Baseline](https://github.com/bingsu1103/hw06-api-testing-member2/actions/runs/45592500000) | `3465cac` | 3 case, 6/6 assertion pass | [Ảnh](../evidence/screenshots/ci-baseline.png) |
+| [Minh họa failure](https://github.com/bingsu1103/hw06-api-testing-member2/actions/runs/45592526384) | `98d5f27` | 3 case, đúng 1/6 assertion fail, exit 1 | [Ảnh](../evidence/screenshots/ci-failure-demo.png) |
+| [Full](https://github.com/bingsu1103/hw06-api-testing-member2/actions/runs/45592636406) | `3465cac` | 120 case, 106/298 assertion fail, exit 1 | [Ảnh](../evidence/screenshots/ci-full.png) |
 
-Kiểm chứng local ngày 25/11/2026. Baseline pass 6/6 assertion. Bản minh họa có 5/6 assertion pass và trả mã thoát 1.
+Hai chế độ đầu có thể chạy bằng `./scripts/run-newman.sh baseline` và `./scripts/run-newman.sh demonstrate-failure`. Baseline là tập con có một case cho mỗi API đích. Kết quả CI xanh cho toàn bộ 120 case chưa đạt trên SUT gốc. Lượt full đã tải lên artifact `member2-newman-report`.

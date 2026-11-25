@@ -10,3 +10,5 @@ reports/newman/*.html
 *.log
 .DS_Store
 *.xlsx.inspect.ndjson
+evidence/screenshots/newman-console-student.png
+*_TECHNICAL_DRAFT.zip
