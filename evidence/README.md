@@ -10,4 +10,4 @@
 - AI audit, AI report và prompt AI do sinh viên hoàn thiện.
 - Sơ đồ test-generator phải do sinh viên tự vẽ theo đề. [Pseudocode kỹ thuật](../docs/test-generator-pseudocode.md)
 - Xác nhận điểm tự chấm cuối, bổ sung các phần trên và lưu ZIP theo mẫu đề. Bản kỹ thuật hiện dùng điểm tự chấm tạm 60/100.
-- Yêu cầu một lượt CI xanh toàn bộ suite chưa đạt. Baseline xanh chạy ba case đại diện. Lượt đủ 120 case ghi nhận lỗi của SUT.
+- Yêu cầu một lượt CI xanh toàn bộ suite chưa đạt. Chế độ regression chỉ chạy 54 case đạt kỳ vọng trong lần thực thi đầy đủ. Lượt đủ 120 case ghi nhận sai lệch và giả định cần đối chiếu.

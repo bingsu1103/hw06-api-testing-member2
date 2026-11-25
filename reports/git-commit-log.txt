@@ -1,4 +1,4 @@
-HW06 workspace history through the capture of functional defect evidence.
+HW06 workspace history through the verified regression and coverage update.
 The Member 2 scope starts at 1eb7937. Earlier commits are superseded.
 
 +3fc2fd2 2026-11-17T16:15:49+07:00 chore: initialize HW06 API testing project
@@ -12,8 +12,12 @@ b890a47 2026-11-17T16:37:19+07:00 test: record Newman execution and confirmed de
 fadaec5 2026-11-25T16:45:59+07:00 docs: export staged homework commit history
 5e4e594 2026-11-25T17:10:40+07:00 ci: enable separate public failure-demo commit
 e8931e1 2026-11-25T17:12:46+07:00 test: capture member 2 functional defect evidence
+56c1d5a docs: finalize public CI and issue evidence
+9c5081b 2026-11-25T17:29:09+07:00 test: expand verified regression and trace security coverage
 
 Public submission repository: https://github.com/bingsu1103/hw06-api-testing-member2
 3465cac  baseline CI sample (main)
 98d5f27  one-failure CI sample (ci/failure-demo)
 eed96ed  published defect screenshots (main)
+f775b4b  published CI runs and issue evidence links (main)
+0b1cb8b  regression CI sample, 54 cases (main)

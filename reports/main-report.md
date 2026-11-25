@@ -18,7 +18,9 @@ Postman dùng collection theo Pool, biến cấp collection và môi trường, 
 
 ## CI và chứng cứ
 
-GitHub Actions đã chạy cả ba chế độ. Baseline gồm 3 case đại diện và pass 6/6 assertion. Lượt minh họa có đúng 1 assertion fail. Lượt đủ 120 case ghi nhận 106 assertion fail trên SUT gốc. Sáu GitHub Issues có ảnh Newman. Xem đường dẫn và ảnh bằng chứng trong evidence/README.md.
+GitHub Actions đã chạy baseline, minh họa một assertion fail và suite đầy đủ. Suite đủ 120 case ghi nhận 106 assertion fail trên SUT gốc. Chế độ regression chạy lại 54 case đã pass với kỳ vọng gốc. Sáu GitHub Issues có ảnh Newman. Xem đường dẫn và bằng chứng trong evidence/README.md.
+
+Bảng docs/member2-coverage.md đối chiếu SEC-01–SEC-07, kiểm tra schema và các giả định chưa được nêu rõ trong đặc tả.
 
 ## Nguồn
 
