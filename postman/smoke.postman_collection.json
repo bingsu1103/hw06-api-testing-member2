@@ -1,0 +1,38 @@
+{
+  "info": {
+    "name": "HW06 EShop Smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.request.headers.upsert({ key: \"X-Student-Id\", value: \"23120205\" });"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Backend responds with product JSON",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"body is an array\", function () { pm.expect(pm.response.json()).to.be.an(\"array\"); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

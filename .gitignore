@@ -1,0 +1,12 @@
+node_modules/
+.superpowers/
+.cache/
+tmp/
+reports/newman/*.json
+reports/newman/*.xml
+reports/newman/*.html
+!reports/newman/.gitkeep
+!reports/newman/report.html
+*.log
+.DS_Store
+*.xlsx.inspect.ndjson

@@ -1,0 +1,2909 @@
+[
+  {
+    "id": "REG-G-001",
+    "api": "register",
+    "title": "Standard registration",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-002",
+    "api": "register",
+    "title": "Vietnamese name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Trần Thị Ánh",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-003",
+    "api": "register",
+    "title": "One-character name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "A",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-004",
+    "api": "register",
+    "title": "Hyphenated name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Anne-Marie",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-005",
+    "api": "register",
+    "title": "Apostrophe in a legitimate name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Anne O’Neil",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-006",
+    "api": "register",
+    "title": "Plus-addressed email",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{alias}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-007",
+    "api": "register",
+    "title": "Mixed-case domain",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{mixedDomain}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-008",
+    "api": "register",
+    "title": "Exactly eight valid password characters",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "Abcde1!x"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-009",
+    "api": "register",
+    "title": "Supported dollar symbol",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "Abcde1$x"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-010",
+    "api": "register",
+    "title": "Supported percent symbol",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "Abcde1%x"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-011",
+    "api": "register",
+    "title": "Matching explicit confirmation",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}",
+        "confirmPassword": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-012",
+    "api": "register",
+    "title": "Password length seven",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "Abcd1!x"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-013",
+    "api": "register",
+    "title": "Password lacks uppercase",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "abcdef1!"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-014",
+    "api": "register",
+    "title": "Password lacks lowercase",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "ABCDEF1!"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-015",
+    "api": "register",
+    "title": "Password lacks digit",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "Abcdefg!"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-016",
+    "api": "register",
+    "title": "Password lacks special character",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "Abcdefg1"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-017",
+    "api": "register",
+    "title": "Empty password",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": ""
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-018",
+    "api": "register",
+    "title": "Omitted password",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-019",
+    "api": "register",
+    "title": "Null password",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": null
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-020",
+    "api": "register",
+    "title": "Numeric password",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": 12345678
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-021",
+    "api": "register",
+    "title": "Empty email",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-022",
+    "api": "register",
+    "title": "Omitted email",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-023",
+    "api": "register",
+    "title": "Null email",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": null,
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-024",
+    "api": "register",
+    "title": "Numeric email",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": 123,
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-025",
+    "api": "register",
+    "title": "Email lacks at sign",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "member2.example.test",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-026",
+    "api": "register",
+    "title": "Email lacks local part",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "@example.test",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-027",
+    "api": "register",
+    "title": "Email lacks domain",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "member2@",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-028",
+    "api": "register",
+    "title": "Email has internal whitespace",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "member 2@example.test",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-029",
+    "api": "register",
+    "title": "Empty name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-030",
+    "api": "register",
+    "title": "Omitted name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-031",
+    "api": "register",
+    "title": "Null name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": null,
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-032",
+    "api": "register",
+    "title": "Name contains whitespace only",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "   ",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-033",
+    "api": "register",
+    "title": "Numeric name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": 123,
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-G-034",
+    "api": "register",
+    "title": "Long valid name",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "REG-G-035",
+    "api": "register",
+    "title": "Mismatched explicit confirmation",
+    "requirement": "FR-01",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}",
+        "confirmPassword": "Different1!"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-E-001",
+    "api": "register",
+    "title": "Duplicate email",
+    "requirement": "FR-01",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      },
+      "fixture": "duplicate"
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-E-002",
+    "api": "register",
+    "title": "Array name",
+    "requirement": "FR-01",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": [
+          "An"
+        ],
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-E-003",
+    "api": "register",
+    "title": "Object email",
+    "requirement": "FR-01",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": {
+          "value": "member2@example.test"
+        },
+        "password": "{{fixturePassword}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-E-004",
+    "api": "register",
+    "title": "Array password",
+    "requirement": "FR-01",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": [
+          "Abcdef1!"
+        ]
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "REG-E-005",
+    "api": "register",
+    "title": "Success response excludes credential fields",
+    "requirement": "FR-01",
+    "origin": "extension",
+    "coverage": [
+      "security",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/register",
+      "body": {
+        "name": "Nguyễn Gia An",
+        "email": "{{email}}",
+        "password": "{{fixturePassword}}"
+      },
+      "fixture": "safe-response"
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-001",
+    "api": "checkout",
+    "title": "Address partition 1",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi, TP.HCM",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-002",
+    "api": "checkout",
+    "title": "Address partition 2",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "8 Nguyễn Huệ",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-003",
+    "api": "checkout",
+    "title": "Address partition 3",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "Hà Nội",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-004",
+    "api": "checkout",
+    "title": "Address partition 4",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "A",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-005",
+    "api": "checkout",
+    "title": "Address partition 5",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "Apartment 4B / 17",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-006",
+    "api": "checkout",
+    "title": "Address partition 6",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "Khu phố 3, P. 2",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-007",
+    "api": "checkout",
+    "title": "Address partition 7",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "  12 Lê Lợi  ",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-008",
+    "api": "checkout",
+    "title": "Address partition 8",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi\nTầng 2",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-009",
+    "api": "checkout",
+    "title": "Address partition 9",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "Phường 5 – Quận 3",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-010",
+    "api": "checkout",
+    "title": "Address partition 10",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "Tòa nhà O’Neil",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-011",
+    "api": "checkout",
+    "title": "Single line quantity 2",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "qty": 2
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-012",
+    "api": "checkout",
+    "title": "Single line quantity 3",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "qty": 3
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-013",
+    "api": "checkout",
+    "title": "Single line quantity 5",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "qty": 5
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-014",
+    "api": "checkout",
+    "title": "Single line quantity 10",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "qty": 10
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-015",
+    "api": "checkout",
+    "title": "Single line quantity 20",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "qty": 20
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-016",
+    "api": "checkout",
+    "title": "Two lines with second quantity 2",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "second": 2
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-017",
+    "api": "checkout",
+    "title": "Two lines with second quantity 3",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "second": 3
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-018",
+    "api": "checkout",
+    "title": "Two lines with second quantity 4",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "second": 4
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-019",
+    "api": "checkout",
+    "title": "Two lines with second quantity 5",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "second": 5
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-020",
+    "api": "checkout",
+    "title": "Compute total when client omits it",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-021",
+    "api": "checkout",
+    "title": "Standard submitted total matches cart",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-022",
+    "api": "checkout",
+    "title": "Empty address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-023",
+    "api": "checkout",
+    "title": "Omitted address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-024",
+    "api": "checkout",
+    "title": "Null address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": null,
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-025",
+    "api": "checkout",
+    "title": "Blank address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "  ",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-026",
+    "api": "checkout",
+    "title": "Numeric address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": 123,
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-027",
+    "api": "checkout",
+    "title": "Array address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": [],
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-028",
+    "api": "checkout",
+    "title": "Object address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": {},
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-029",
+    "api": "checkout",
+    "title": "Boolean address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": false,
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-030",
+    "api": "checkout",
+    "title": "Checkout with empty cart",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "empty": true
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-031",
+    "api": "checkout",
+    "title": "No Authorization header",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "security",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "noAuth": true
+      }
+    },
+    "expected": {
+      "status": 401,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-032",
+    "api": "checkout",
+    "title": "Invalid opaque token",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "security",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "invalidAuth": true
+      }
+    },
+    "expected": {
+      "status": 403,
+      "success": false
+    }
+  },
+  {
+    "id": "CHK-G-033",
+    "api": "checkout",
+    "title": "Long address",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "Building Building Building Building Building Building Building Building Building Building Building Building",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-034",
+    "api": "checkout",
+    "title": "Address with accents and slash",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "Hẻm 18/4, đường Võ Văn Tần",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-G-035",
+    "api": "checkout",
+    "title": "Two lines with both quantities greater than one",
+    "requirement": "FR-08",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "qty": 2,
+        "second": 2
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-E-001",
+    "api": "checkout",
+    "title": "Three units with no submitted total",
+    "requirement": "FR-08",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi"
+      },
+      "fixture": {
+        "qty": 3
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-E-002",
+    "api": "checkout",
+    "title": "Second product only",
+    "requirement": "FR-08",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "product": 2
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-E-003",
+    "api": "checkout",
+    "title": "Two lines and no submitted total",
+    "requirement": "FR-08",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi"
+      },
+      "fixture": {
+        "second": 1
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-E-004",
+    "api": "checkout",
+    "title": "Validate cart cleared after two-line checkout",
+    "requirement": "FR-08",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "12 Lê Lợi",
+        "total_amount": "{{cartTotal}}"
+      },
+      "fixture": {
+        "second": 1
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "CHK-E-005",
+    "api": "checkout",
+    "title": "Check submitted address is retained",
+    "requirement": "FR-08",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "POST",
+      "path": "/api/checkout",
+      "body": {
+        "shipping_address": "Tầng 3, phòng 305",
+        "total_amount": "{{cartTotal}}"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "ORD-G-001",
+    "api": "admin-order-status",
+    "title": "pending to pending",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "pending"
+      },
+      "fixture": {
+        "from": "pending"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-002",
+    "api": "admin-order-status",
+    "title": "pending to confirmed",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "from": "pending"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "ORD-G-003",
+    "api": "admin-order-status",
+    "title": "pending to shipping",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "shipping"
+      },
+      "fixture": {
+        "from": "pending"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-004",
+    "api": "admin-order-status",
+    "title": "pending to delivered",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "delivered"
+      },
+      "fixture": {
+        "from": "pending"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-005",
+    "api": "admin-order-status",
+    "title": "pending to canceled",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "canceled"
+      },
+      "fixture": {
+        "from": "pending"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "ORD-G-006",
+    "api": "admin-order-status",
+    "title": "confirmed to pending",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "pending"
+      },
+      "fixture": {
+        "from": "confirmed"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-007",
+    "api": "admin-order-status",
+    "title": "confirmed to confirmed",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "from": "confirmed"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-008",
+    "api": "admin-order-status",
+    "title": "confirmed to shipping",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "shipping"
+      },
+      "fixture": {
+        "from": "confirmed"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "ORD-G-009",
+    "api": "admin-order-status",
+    "title": "confirmed to delivered",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "delivered"
+      },
+      "fixture": {
+        "from": "confirmed"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-010",
+    "api": "admin-order-status",
+    "title": "confirmed to canceled",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "canceled"
+      },
+      "fixture": {
+        "from": "confirmed"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "ORD-G-011",
+    "api": "admin-order-status",
+    "title": "shipping to pending",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "pending"
+      },
+      "fixture": {
+        "from": "shipping"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-012",
+    "api": "admin-order-status",
+    "title": "shipping to confirmed",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "from": "shipping"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-013",
+    "api": "admin-order-status",
+    "title": "shipping to shipping",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "shipping"
+      },
+      "fixture": {
+        "from": "shipping"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-014",
+    "api": "admin-order-status",
+    "title": "shipping to delivered",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "delivered"
+      },
+      "fixture": {
+        "from": "shipping"
+      }
+    },
+    "expected": {
+      "status": 200,
+      "success": true
+    }
+  },
+  {
+    "id": "ORD-G-015",
+    "api": "admin-order-status",
+    "title": "shipping to canceled",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "canceled"
+      },
+      "fixture": {
+        "from": "shipping"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-016",
+    "api": "admin-order-status",
+    "title": "delivered to pending",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "pending"
+      },
+      "fixture": {
+        "from": "delivered"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-017",
+    "api": "admin-order-status",
+    "title": "delivered to confirmed",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "from": "delivered"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-018",
+    "api": "admin-order-status",
+    "title": "delivered to shipping",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "shipping"
+      },
+      "fixture": {
+        "from": "delivered"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-019",
+    "api": "admin-order-status",
+    "title": "delivered to delivered",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "delivered"
+      },
+      "fixture": {
+        "from": "delivered"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-020",
+    "api": "admin-order-status",
+    "title": "delivered to canceled",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "canceled"
+      },
+      "fixture": {
+        "from": "delivered"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-021",
+    "api": "admin-order-status",
+    "title": "canceled to pending",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "pending"
+      },
+      "fixture": {
+        "from": "canceled"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-022",
+    "api": "admin-order-status",
+    "title": "canceled to confirmed",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "from": "canceled"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-023",
+    "api": "admin-order-status",
+    "title": "canceled to shipping",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "shipping"
+      },
+      "fixture": {
+        "from": "canceled"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-024",
+    "api": "admin-order-status",
+    "title": "canceled to delivered",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "delivered"
+      },
+      "fixture": {
+        "from": "canceled"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-025",
+    "api": "admin-order-status",
+    "title": "canceled to canceled",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "state",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "canceled"
+      },
+      "fixture": {
+        "from": "canceled"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-026",
+    "api": "admin-order-status",
+    "title": "Missing status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {}
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-027",
+    "api": "admin-order-status",
+    "title": "Null status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": null
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-028",
+    "api": "admin-order-status",
+    "title": "Empty status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": ""
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-029",
+    "api": "admin-order-status",
+    "title": "Blank status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": " "
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-030",
+    "api": "admin-order-status",
+    "title": "Unknown status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "returned"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-031",
+    "api": "admin-order-status",
+    "title": "Uppercase status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "CONFIRMED"
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-032",
+    "api": "admin-order-status",
+    "title": "Number status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": 1
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-033",
+    "api": "admin-order-status",
+    "title": "Array status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": [
+          "confirmed"
+        ]
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-034",
+    "api": "admin-order-status",
+    "title": "Object status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": {
+          "value": "confirmed"
+        }
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-G-035",
+    "api": "admin-order-status",
+    "title": "Boolean status",
+    "requirement": "FR-10 / FR-18",
+    "origin": "generated",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": true
+      }
+    },
+    "expected": {
+      "status": 400,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-E-001",
+    "api": "admin-order-status",
+    "title": "Unknown order ID",
+    "requirement": "FR-10 / FR-18",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "id": "999999999"
+      }
+    },
+    "expected": {
+      "status": 404,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-E-002",
+    "api": "admin-order-status",
+    "title": "Zero order ID",
+    "requirement": "FR-10 / FR-18",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "id": "0"
+      }
+    },
+    "expected": {
+      "status": 404,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-E-003",
+    "api": "admin-order-status",
+    "title": "Negative order ID",
+    "requirement": "FR-10 / FR-18",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "id": "-1"
+      }
+    },
+    "expected": {
+      "status": 404,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-E-004",
+    "api": "admin-order-status",
+    "title": "Non-numeric order ID",
+    "requirement": "FR-10 / FR-18",
+    "origin": "extension",
+    "coverage": [
+      "domain",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "id": "abc"
+      }
+    },
+    "expected": {
+      "status": 404,
+      "success": false
+    }
+  },
+  {
+    "id": "ORD-E-005",
+    "api": "admin-order-status",
+    "title": "Missing admin authentication",
+    "requirement": "FR-10 / FR-18",
+    "origin": "extension",
+    "coverage": [
+      "security",
+      "schema"
+    ],
+    "request": {
+      "method": "PUT",
+      "path": "/api/admin/orders/{{orderId}}/status",
+      "body": {
+        "status": "confirmed"
+      },
+      "fixture": {
+        "noAuth": true
+      }
+    },
+    "expected": {
+      "status": 401,
+      "success": false
+    }
+  }
+]

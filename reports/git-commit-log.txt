@@ -1,0 +1,11 @@
+HW06 workspace history through the technical deliverables commit.
+The Member 2 scope starts at 1eb7937. Earlier commits are superseded.
+
++3fc2fd2 2026-11-17T16:15:49+07:00 chore: initialize HW06 API testing project
+84a53b0 2026-11-17T16:19:37+07:00 test: add generated and extension API cases
+7f8d83a 2026-11-17T16:26:05+07:00 feat: add runnable Postman and Newman suite
+4125696 2026-11-17T16:34:08+07:00 fix: isolate stateful API cases and assert schemas
+b890a47 2026-11-17T16:37:19+07:00 test: record Newman execution and confirmed defects
+1eb7937 2026-11-25T16:41:58+07:00 refactor: align API suite with member 2 assignment
+7bd8c68 2026-11-25T16:45:31+07:00 ci: add baseline, one-failure demo and full suite modes
+1f5b885 2026-11-25T16:45:43+07:00 docs: record member 2 Newman results and technical deliverables
