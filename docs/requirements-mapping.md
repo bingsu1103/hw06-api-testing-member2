@@ -7,5 +7,6 @@ Theo hàng số 2 của bảng phân công, bộ test bao gồm Đăng ký FR-01
 | Thiết kế dữ liệu kiểm thử | `data/member2-cases.mjs`, Postman collection và workbook |
 | Thực thi và đối chiếu | Newman HTML, `reports/member2-results.json`, báo cáo kỹ thuật |
 | Lỗi chức năng | `reports/bugs/member2-functional-findings.md` |
+| Áp dụng SEC-01–SEC-07 và căn cứ kỳ vọng | [Bảng đối chiếu kỹ thuật](member2-coverage.md) |
 | CI | `.github/workflows/api-tests.yml`, `reports/cicd-report.md` |
 | Chứng cứ và phần sinh viên hoàn thiện | `evidence/README.md` |

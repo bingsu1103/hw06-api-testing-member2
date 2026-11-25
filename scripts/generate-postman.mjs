@@ -1,4 +1,4 @@
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { member2Cases } from "../data/member2-cases.mjs";
 
@@ -7,6 +7,24 @@ const folders = [
   ["checkout", "Pool B - Checkout"],
   ["admin-order-status", "Pool C - Admin Order Status"],
 ];
+
+export function selectVerifiedCases(cases, rows) {
+  const observed = new Map(rows.map((row) => [row.id, row]));
+  if (rows.length !== cases.length || observed.size !== cases.length) {
+    throw new Error("The recorded run must contain exactly one result per canonical case.");
+  }
+  const selected = cases.filter(({id, api}) => {
+    const result = observed.get(id);
+    if (result?.api !== api || !["PASS", "FAIL"].includes(result.result)) {
+      throw new Error(`No matching recorded outcome for ${id}`);
+    }
+    return result.result === "PASS";
+  });
+  if (folders.some(([api]) => !selected.some((entry) => entry.api === api))) {
+    throw new Error("The regression selection must include all three APIs.");
+  }
+  return selected;
+}
 const event = (listen, source) => ({ listen, script: { type: "text/javascript", exec: source.trim().split("\n") } });
 const send = `
 function send(request) {
@@ -158,7 +176,12 @@ console.log("X-Student-Id:", pm.request.headers.get("X-Student-Id"));
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const [mode, output] = process.argv.slice(2);
-  if (mode === "baseline" || mode === "demonstrate-failure") {
+  if (mode === "regression") {
+    const { rows } = JSON.parse(await readFile(new URL("../reports/member2-results.json", import.meta.url), "utf8"));
+    const selected = selectVerifiedCases(member2Cases, rows);
+    console.log(`Regression selection: ${selected.length} / ${member2Cases.length} canonical cases`);
+    await writeFile(output, JSON.stringify(buildCollection(selected), null, 2) + "\n");
+  } else if (mode === "baseline" || mode === "demonstrate-failure") {
     const ids = ["REG-G-001", "CHK-G-031", "ORD-G-002"];
     const cases = member2Cases.filter(({id}) => ids.includes(id)).map((entry) =>
       mode === "demonstrate-failure" && entry.id === ids[0]
@@ -166,9 +189,9 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
         : entry);
     await writeFile(output, JSON.stringify(buildCollection(cases), null, 2) + "\n");
   } else {
-  for (const [file, content] of [
-    ["../data/test-cases.json", member2Cases],
-    ["../postman/23120205_HW06.postman_collection.json", buildCollection(member2Cases)],
-  ]) await writeFile(new URL(file, import.meta.url), JSON.stringify(content, null, 2) + "\n");
+    for (const [file, content] of [
+      ["../data/test-cases.json", member2Cases],
+      ["../postman/23120205_HW06.postman_collection.json", buildCollection(member2Cases)],
+    ]) await writeFile(new URL(file, import.meta.url), JSON.stringify(content, null, 2) + "\n");
   }
 }

@@ -6,8 +6,8 @@ on:
     inputs:
       mode:
         type: choice
-        options: [baseline, demonstrate-failure, full]
-        default: baseline
+        options: [regression, baseline, demonstrate-failure, full]
+        default: regression
 permissions:
   contents: read
 jobs:
@@ -23,9 +23,10 @@ jobs:
       - run: npm test
       - name: Run against fresh EShop
         env:
-          MODE: ${{ inputs.mode || (github.ref_name == 'ci/failure-demo' && 'demonstrate-failure') || 'baseline' }}
+          MODE: ${{ inputs.mode || (github.ref_name == 'ci/failure-demo' && 'demonstrate-failure') || 'regression' }}
         run: |
           case "$MODE" in
+            regression) ./scripts/run-newman.sh regression ;;
             baseline) ./scripts/run-newman.sh baseline ;;
             demonstrate-failure) ./scripts/run-newman.sh demonstrate-failure ;;
             full) ./scripts/run-newman.sh ;;

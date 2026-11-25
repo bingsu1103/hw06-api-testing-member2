@@ -2,11 +2,20 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-import { buildCollection } from "../scripts/generate-postman.mjs";
+import { buildCollection, selectVerifiedCases } from "../scripts/generate-postman.mjs";
 
 const canonicalCases = JSON.parse(
   await readFile(new URL("../data/test-cases.json", import.meta.url), "utf8"),
 );
+const {rows} = JSON.parse(await readFile(new URL("../reports/member2-results.json", import.meta.url), "utf8"));
+
+test("regression selection preserves the specification assertions for 54 verified cases", () => {
+  const selected = selectVerifiedCases(canonicalCases, rows);
+  assert.equal(selected.length, 54);
+  assert.deepEqual(buildCollection(selected).item.map((folder) => folder.item.length), [13, 2, 39]);
+  assert.ok(!selected.some(({id}) => id === "ORD-G-024"));
+  assert.throws(() => selectVerifiedCases(canonicalCases, rows.slice(1)), /one result per canonical case/);
+});
 
 test("generates one deterministic Postman item for every canonical case", () => {
   const first = buildCollection(canonicalCases);

@@ -33,7 +33,7 @@ if [[ "${1:-}" == "--smoke" ]]; then
   npx newman run "${project_root}/postman/smoke.postman_collection.json" \
     --environment "${project_root}/postman/local.postman_environment.json" \
     --reporters cli
-elif [[ "${1:-}" == "baseline" || "${1:-}" == "demonstrate-failure" ]]; then
+elif [[ "${1:-}" == "baseline" || "${1:-}" == "demonstrate-failure" || "${1:-}" == "regression" ]]; then
   collection="$(mktemp)"
   trap 'cleanup; unlink "$collection"' EXIT
   node "${project_root}/scripts/generate-postman.mjs" "$1" "$collection"

@@ -20,6 +20,8 @@ node scripts/summarize-newman.mjs
 
 Runner dùng bản EShop seed mới tại `127.0.0.1:3000`. Chế độ `baseline` chạy 3 case chọn lọc và `demonstrate-failure` minh họa một lỗi assertion. [Báo cáo CI](reports/cicd-report.md)
 
+Chế độ `regression` chạy lại cả 54 case đã pass trong lần thực thi đầy đủ. Chế độ `full` chạy đủ 120 case và giữ nguyên các kỳ vọng. [Đối chiếu yêu cầu bảo mật và schema](docs/member2-coverage.md)
+
 | Tiêu chí | Tối đa | Tự chấm |
 | --- | ---: | --- |
 | API 1 | 30 | 20 |
