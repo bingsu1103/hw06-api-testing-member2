@@ -21,3 +21,7 @@ Public submission repository: https://github.com/bingsu1103/hw06-api-testing-mem
 eed96ed  published defect screenshots (main)
 f775b4b  published CI runs and issue evidence links (main)
 0b1cb8b  regression CI sample, 54 cases (main)
+6b14db7  full-remediated CI sample, 120 cases and 298 assertions passed (main)
+
+Local remediation implementation:
+7b0205d  test: verify full API suite against isolated remediated SUT
