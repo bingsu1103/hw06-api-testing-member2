@@ -16,6 +16,20 @@ if [[ "$(git -C "${sut_dir}" rev-parse HEAD)" != "${sut_revision}" ]]; then
   exit 1
 fi
 
+if [[ "${HW06_REMEDIATE:-0}" == 1 ]]; then
+  if [[ "${sut_dir}" != "${project_root}/.cache/eshop-sut-remediated" ]]; then
+    printf '%s\n' "Remediation is restricted to its disposable SUT directory." >&2
+    exit 1
+  fi
+  remediation="${project_root}/patches/member2-sut-remediation.patch"
+  if git -C "${sut_dir}" apply --reverse --check "$remediation"; then
+    printf '%s\n' "Member 2 remediation patch already present"
+  else
+    git -C "${sut_dir}" apply --check "$remediation"
+    git -C "${sut_dir}" apply "$remediation"
+  fi
+fi
+
 if [[ ! -d "${sut_dir}/backend/node_modules" ]]; then
   npm --prefix "${sut_dir}/backend" ci
 fi

@@ -6,7 +6,7 @@ on:
     inputs:
       mode:
         type: choice
-        options: [regression, baseline, demonstrate-failure, full]
+        options: [regression, baseline, demonstrate-failure, full, full-remediated]
         default: regression
 permissions:
   contents: read
@@ -30,10 +30,11 @@ jobs:
             baseline) ./scripts/run-newman.sh baseline ;;
             demonstrate-failure) ./scripts/run-newman.sh demonstrate-failure ;;
             full) ./scripts/run-newman.sh ;;
+            full-remediated) ./scripts/run-newman.sh full-remediated ;;
           esac
       - name: Upload redacted full report
-        if: ${{ always() && inputs.mode == 'full' }}
+        if: ${{ always() && (inputs.mode == 'full' || inputs.mode == 'full-remediated') }}
         uses: actions/upload-artifact@v4
         with:
-          name: member2-newman-report
-          path: reports/newman/report.html
+          name: member2-newman-${{ inputs.mode }}
+          path: ${{ inputs.mode == 'full-remediated' && 'reports/newman/remediated/report.html' || 'reports/newman/report.html' }}

@@ -1,0 +1,174 @@
+diff --git a/backend/database.js b/backend/database.js
+index bd11e99..5edcdba 100644
+--- a/backend/database.js
++++ b/backend/database.js
+@@ -2,2 +2,3 @@ const sqlite3 = require('sqlite3').verbose();
+ const path = require('path');
++const { hashPassword } = require('./member2-password.cjs');
+ 
+@@ -52,3 +53,3 @@ function initDatabase() {
+             name TEXT,
+-            email TEXT,
++            email TEXT COLLATE NOCASE UNIQUE NOT NULL,
+             password TEXT,
+@@ -91,4 +92,4 @@ function initDatabase() {
+         const insertUser = db.prepare('INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)');
+-        insertUser.run('Admin User', 'admin@eshop.com', 'Admin123!', 'admin');
+-        insertUser.run('Test User', 'test@eshop.com', 'Test1234!', 'user');
++        insertUser.run('Admin User', 'admin@eshop.com', hashPassword('Admin123!'), 'admin');
++        insertUser.run('Test User', 'test@eshop.com', hashPassword('Test1234!'), 'user');
+         insertUser.finalize();
+diff --git a/backend/member2-password.cjs b/backend/member2-password.cjs
+new file mode 100644
+index 0000000..5a4924c
+--- /dev/null
++++ b/backend/member2-password.cjs
+@@ -0,0 +1,20 @@
++const { randomBytes, scryptSync, timingSafeEqual } = require("node:crypto");
++
++function strongPassword(value) {
++  return typeof value === "string" && value.length >= 8 && value.length <= 256 &&
++    /[A-Z]/.test(value) && /[a-z]/.test(value) && /[0-9]/.test(value) && /[@$!%*?&]/.test(value);
++}
++
++function hashPassword(value) {
++  const salt = randomBytes(16).toString("hex");
++  return salt + ":" + scryptSync(value, salt, 32).toString("hex");
++}
++
++function verifyPassword(value, stored) {
++  if (typeof value !== "string" || value.length > 256 || typeof stored !== "string") return false;
++  const [salt, key] = stored.split(":");
++  if (!/^[a-f0-9]{32}$/.test(salt) || !/^[a-f0-9]{64}$/.test(key || "")) return false;
++  return timingSafeEqual(Buffer.from(key, "hex"), scryptSync(value, salt, 32));
++}
++
++module.exports = { strongPassword, hashPassword, verifyPassword };
+diff --git a/backend/server.js b/backend/server.js
+index 34f55a2..425068e 100644
+--- a/backend/server.js
++++ b/backend/server.js
+@@ -5,2 +5,3 @@ const db = require("./database");
+ const jwt = require("jsonwebtoken");
++const { strongPassword, hashPassword, verifyPassword } = require("./member2-password.cjs");
+ 
+@@ -20,8 +21,14 @@ const userCarts = {};
+ app.post("/api/register", (req, res) => {
+-  const { name, email, password } = req.body;
++  const { name, email, password, confirmPassword } = req.body || {};
++  if (typeof name !== "string" || !name.trim() ||
++      typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
++      !strongPassword(password) || (confirmPassword !== undefined && confirmPassword !== password)) {
++    return res.status(400).json({ error: "Invalid registration fields" });
++  }
+   db.run(
+     "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+-    [name, email, password],
++    [name.trim(), email.toLowerCase(), hashPassword(password)],
+     function (err) {
+-      if (err) return res.status(500).json({ error: err.message });
++      if (err?.code === "SQLITE_CONSTRAINT") return res.status(409).json({ error: "Email already registered" });
++      if (err) return res.status(500).json({ error: "Registration failed" });
+       res.json({ message: "User registered successfully", id: this.lastID });
+@@ -45,3 +52,3 @@ app.post("/api/login", (req, res) => {
+ 
+-    if (user.password === password) {
++    if (verifyPassword(password, user.password)) {
+       db.run(
+@@ -51,3 +58,4 @@ app.post("/api/login", (req, res) => {
+       const token = jwt.sign({ id: user.id, role: user.role }, SECRET_KEY);
+-      res.json({ message: "Login successful", token, user });
++      const { password: _password, reset_token: _resetToken, ...safeUser } = user;
++      res.json({ message: "Login successful", token, user: safeUser });
+     } else {
+@@ -88,5 +96,6 @@ app.post("/api/reset-password", (req, res) => {
+   const { email, resetToken, newPassword } = req.body;
++  if (!strongPassword(newPassword)) return res.status(400).json({ error: "Invalid password" });
+   db.run(
+     "UPDATE users SET password = ?, reset_token = NULL WHERE email = ? AND reset_token = ?",
+-    [newPassword, email, resetToken],
++    [hashPassword(newPassword), email, resetToken],
+     function (err) {
+@@ -113,3 +122,6 @@ app.get("/api/users/me", authenticateToken, (req, res) => {
+   db.get("SELECT * FROM users WHERE id = ?", [req.user.id], (err, user) => {
+-    res.json(user);
++    if (err) return res.status(500).json({ error: "Could not load profile" });
++    if (!user) return res.status(404).json({ error: "User not found" });
++    const { password: _password, reset_token: _resetToken, ...safeUser } = user;
++    res.json(safeUser);
+   });
+@@ -296,14 +308,37 @@ app.post("/api/cart", authenticateToken, (req, res) => {
+ 
+-app.post("/api/checkout", authenticateToken, (req, res) => {
++const checkoutInProgress = new Set();
++app.post("/api/checkout", authenticateToken, async (req, res) => {
+   const userId = req.user.id;
+-  const { total_amount, shipping_address } = req.body;
+-
+-  db.run(
+-    "INSERT INTO orders (user_id, total_amount, status, shipping_address) VALUES (?, ?, ?, ?)",
+-    [userId, total_amount, "pending", shipping_address],
+-    function (err) {
+-      if (err) return res.status(500).json({ error: err.message });
+-      res.json({ message: "Checkout successful", orderId: this.lastID });
+-    },
+-  );
++  const { shipping_address } = req.body || {};
++  if (typeof shipping_address !== "string" || !shipping_address.trim()) {
++    return res.status(400).json({ error: "Shipping address is required" });
++  }
++  if (checkoutInProgress.has(userId)) return res.status(409).json({ error: "Checkout already in progress" });
++  const cart = (userCarts[userId] || []).slice();
++  if (!cart.length || cart.some((item) => !item || !Number.isSafeInteger(item.id) ||
++      item.id < 1 || !Number.isSafeInteger(item.quantity) || item.quantity < 1)) {
++    return res.status(400).json({ error: "Cart is empty or invalid" });
++  }
++  checkoutInProgress.add(userId);
++  try {
++    const canonical = await new Promise((resolve, reject) => {
++      db.all("SELECT id, price FROM products", [], (err, rows) => err ? reject(err) : resolve(rows));
++    });
++    const prices = new Map(canonical.map(({id, price}) => [id, price]));
++    const total = cart.reduce((sum, item) => sum + prices.get(item.id) * item.quantity, 0);
++    if (!Number.isSafeInteger(total) || total <= 0) return res.status(400).json({ error: "Invalid cart total" });
++    const orderId = await new Promise((resolve, reject) => {
++      db.run(
++        "INSERT INTO orders (user_id, total_amount, status, shipping_address) VALUES (?, ?, ?, ?)",
++        [userId, total, "pending", shipping_address],
++        function (err) { if (err) reject(err); else resolve(this.lastID); },
++      );
++    });
++    userCarts[userId].splice(0, cart.length);
++    res.json({ message: "Checkout successful", orderId });
++  } catch {
++    res.status(500).json({ error: "Checkout failed" });
++  } finally {
++    checkoutInProgress.delete(userId);
++  }
+ });
+@@ -525,3 +560,4 @@ app.get("/api/admin/orders", authenticateToken, (req, res) => {
+ app.put("/api/admin/orders/:id/status", authenticateToken, (req, res) => {
+-  const { status } = req.body; // pending, confirmed, shipping, delivered, canceled
++  if (req.user.role !== "admin") return res.status(403).json({ error: "Admin role required" });
++  const { status } = req.body || {};
+ 
+@@ -531,2 +567,3 @@ app.put("/api/admin/orders/:id/status", authenticateToken, (req, res) => {
+     (err, order) => {
++      if (err) return res.status(500).json({ error: "Could not load order" });
+       if (!order) return res.status(404).json({ error: "Order not found" });
+@@ -549,5 +586,2 @@ app.put("/api/admin/orders/:id/status", authenticateToken, (req, res) => {
+ 
+-      if (currentStatus === "canceled" && status === "delivered")
+-        isValidTransition = true;
+-
+       if (!isValidTransition) {
+@@ -559,5 +593,7 @@ app.put("/api/admin/orders/:id/status", authenticateToken, (req, res) => {
+       db.run(
+-        "UPDATE orders SET status = ? WHERE id = ?",
+-        [status, req.params.id],
++        "UPDATE orders SET status = ? WHERE id = ? AND status = ?",
++        [status, req.params.id, currentStatus],
+         function (err) {
++          if (err) return res.status(500).json({ error: "Could not update order" });
++          if (!this.changes) return res.status(409).json({ error: "Order state changed" });
+           res.json({ message: "Order status updated" });

@@ -4,6 +4,16 @@ set -euo pipefail
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 sut_dir="${SUT_DIR:-${project_root}/.cache/eshop-sut}"
 report_dir="${project_root}/reports/newman"
+case "${1:-full}" in
+  full|baseline|demonstrate-failure|regression|--smoke) ;;
+  full-remediated)
+    export SUT_DIR="${project_root}/.cache/eshop-sut-remediated"
+    export HW06_REMEDIATE=1
+    sut_dir="$SUT_DIR"
+    report_dir="${report_dir}/remediated"
+    ;;
+  *) printf 'Unknown run mode: %s\n' "$1" >&2; exit 2 ;;
+esac
 
 health_headers=(-H 'X-Student-Id: 23120205')
 if curl --silent --max-time 2 "${health_headers[@]}" "http://127.0.0.1:3000/" >/dev/null; then
